@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { parseInput, solve } from './day9';
+import { parseInput, solve, getSampleInput } from './day9';
 
 /**
  * Make sure you update the above './dayN' to the current problem day
@@ -18,10 +18,9 @@ export function main() {
   );
   const file = fs.readFileSync(inputPath, 'utf8');
 
-  // const sample = getSampleInput();
-  // const solution: number = solve(sample);
-
+  // const parsedInput = getSampleInput();
   const parsedInput = parseInput(file);
+
   // console.log(parsedInput);
   const solution: number = solve(parsedInput);
 
