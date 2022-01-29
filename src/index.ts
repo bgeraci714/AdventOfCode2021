@@ -1,12 +1,12 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { parseInput, solve, getSampleInput } from './day9';
+import { parseInput, solve } from './day10';
 
 /**
  * Make sure you update the above './dayN' to the current problem day
  * along with the problem day variable
  */
-const PROBLEM_DAY = 9;
+const PROBLEM_DAY = 10;
 
 export function main() {
   // get input file
