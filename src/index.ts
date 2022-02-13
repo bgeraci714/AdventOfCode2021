@@ -1,30 +1,46 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { parseInput, solve } from './day11';
+import { parseInput, solve } from './day12';
 
 /**
  * Make sure you update the above './dayN' to the current problem day
  * along with the PROBLEM_DAY variable
  */
-const PROBLEM_DAY = 11;
+const PROBLEM_DAY = 12;
+const PART = 1;
 
 export function main() {
-  // get input file
-  const inputPath = path.join(
-    __dirname,
-    '..',
-    'input_files',
-    `input${PROBLEM_DAY}.txt`
-  );
-  const file = fs.readFileSync(inputPath, 'utf8');
+  const expectedSampleSolution = 10;
+  const sampleSolution = testInput(PROBLEM_DAY, PART, true);
+  if (sampleSolution !== expectedSampleSolution) {
+    console.log(
+      `Sample solution of ${sampleSolution} does not match expected value of ${expectedSampleSolution}`
+    );
+    return;
+  }
 
-  // const parsedInput = getSampleInput();
-  const parsedInput = parseInput(file);
+  console.log(`Sample solution matches!`);
 
-  // console.log(parsedInput);
-  const solution: number = solve(parsedInput);
-
-  console.log(`solution = ${solution}`);
+  const solution = testInput(PROBLEM_DAY, PART);
+  console.log(`Solution = ${solution}`);
 }
 
 main();
+
+const testInput = (
+  problemDay: number,
+  part: number,
+  isSample?: boolean
+): number => {
+  // get input file reflective of whether it's a sample or not
+  const pathPieces = isSample
+    ? [__dirname, '..', 'input_files', 'sample', `input${problemDay}.txt`]
+    : [__dirname, '..', 'input_files', `input${problemDay}.txt`];
+
+  const inputPath = path.join(...pathPieces);
+  const file = fs.readFileSync(inputPath, 'utf8');
+  const parsedInput = parseInput(file);
+
+  // solve the problem
+  return solve(parsedInput, part);
+};
